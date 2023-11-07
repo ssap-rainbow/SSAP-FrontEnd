@@ -12,7 +12,7 @@ export const LoginHandeler = () => {
     const kakaoLogin = async () => {
       await axios({
         method: "GET",
-        url: `https://k0afbd0de17bfa.user-app.krampoline.com/api/oauth/kakao/callback/?code=${code}`,
+        url: `https://kb382b903bf0ea.user-app.krampoline.com/api/oauth/kakao/callback/?code=${code}`,
 
         // url: `${process.env.REACT_APP_REDIRECT_URL}/?code=${code}`,
         headers: {
