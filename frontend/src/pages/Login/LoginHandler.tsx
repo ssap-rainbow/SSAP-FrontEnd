@@ -1,90 +1,57 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const LoginHandler = () => {
-  const [loginInfo, setLoginInfo] = useState(null);
+export const LoginHandler = () => {
+  const navigate = useNavigate();
+  const code = new URL(window.location.href).searchParams.get("code");
+  console.log("code 받음", code);
+  // 사용자 이름과 이메일을 상태로 관리
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-  const handleLogin = async () => {
+  useEffect(() => {
+    kakaoLogin();
+  }, [code]);
+
+  const kakaoLogin = async () => {
     try {
-      const provider = "kakao"; // 또는 상황에 맞게 동적으로 설정
-      const code = new URL(window.location.href).searchParams.get("code"); // 여기에 카카오 OAuth 리다이렉트로부터 받은 코드를 넣습니다
+      console.log("서버에 코드 요청 보냄", code);
+      const res = await axios({
+        method: "GET",
+        url: `https://ke08fd11a16dba.user-app.krampoline.com/api/oauth/kakao/callback/?code=${code}`,
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      });
+      console.log("서버로부터 응답", res);
 
-      const response = await axios.get(
-        `https://ke08fd11a16dba.user-app.krampoline.com/api/oauth/kakao/callback/?code=${code}`,
-        {
-          params: { code },
-        }
-      );
-
-      setLoginInfo(response.data);
+      // 백엔드 응답 처리
+      if (res.data.loginSuccess) {
+        console.log("로그인 성공", res.data);
+        const { userName, userEmail } = res.data.account;
+        setUserName(userName); // 상태 업데이트
+        setUserEmail(userEmail); // 상태 업데이트
+        localStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰 저장
+        console.log("엑세스 토큰 저장", localStorage.getItem("accessToken"));
+        console.log("네비게이팅");
+        navigate("/"); // 메인 페이지로 이동
+      } else {
+        console.error("로그인 실패", res.data);
+      }
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("로그인 요청 실패:", error);
     }
   };
 
   return (
     <div>
-      <button onClick={handleLogin}>카카오로 로그인</button>
-      {loginInfo && (
-        <div>
-          <h3>로그인 정보:</h3>
-          <pre>{JSON.stringify(loginInfo, null, 2)}</pre>
-        </div>
-      )}
+      <p>로그인 중입니다.</p>
+      <p>잠시만 기다려주세요.</p>
+      {/* 사용자 정보 화면에 표시 */}
+      {userName && <p>이름: {userName}</p>}
+      {userEmail && <p>이메일: {userEmail}</p>}
+      console.log("상태 업데이트", userName, userEmail)
     </div>
   );
 };
-
-export default LoginHandler;
-
-// import axios from "axios";
-// import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
-// export const LoginHandler = () => {
-//   const navigate = useNavigate();
-//   const code = new URL(window.location.href).searchParams.get("code");
-
-//   // 사용자 이름과 이메일을 상태로 관리
-//   const [userName, setUserName] = useState("");
-//   const [userEmail, setUserEmail] = useState("");
-
-//   useEffect(() => {
-//     kakaoLogin();
-//   }, [code]);
-
-//   const kakaoLogin = async () => {
-//     try {
-//       const res = await axios({
-//         method: "GET",
-//         url: `https://ke08fd11a16dba.user-app.krampoline.com/api/oauth/kakao/callback/?code=${code}`,
-//         headers: {
-//           "Content-Type": "application/json;charset=utf-8",
-//         },
-//       });
-
-//       // 백엔드 응답 처리
-//       if (res.data.loginSuccess) {
-//         const { userName, userEmail } = res.data.account;
-//         setUserName(userName); // 상태 업데이트
-//         setUserEmail(userEmail); // 상태 업데이트
-//         localStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰 저장
-//         navigate("/"); // 메인 페이지로 이동
-//       } else {
-//         console.error("로그인 실패");
-//       }
-//     } catch (error) {
-//       console.error("로그인 요청 실패:", error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <p>로그인 중입니다.</p>
-//       <p>잠시만 기다려주세요.</p>
-//       {/* 사용자 정보 화면에 표시 */}
-//       {userName && <p>이름: {userName}</p>}
-//       {userEmail && <p>이메일: {userEmail}</p>}
-//     </div>
-//   );
-// };
