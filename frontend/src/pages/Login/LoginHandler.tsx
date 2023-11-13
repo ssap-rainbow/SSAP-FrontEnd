@@ -19,7 +19,7 @@ export const LoginHandler = () => {
       console.log("서버에 코드 요청 보냄", code);
       const res = await axios({
         method: "GET",
-        url: `https://ke08fd11a16dba.user-app.krampoline.com/api/oauth/kakao/callback/?code=${code}`,
+        url: `https://ke08fd11a16dba.user-app.krampoline.com/api/oauth/kakao/callback?code=${code}`,
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
