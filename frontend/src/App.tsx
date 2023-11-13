@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route
             path="/login/oauth2/code/kakao"
             element={<LoginHandeler />} //redirect_url에 맞춰 꾸밀 컴포넌트
