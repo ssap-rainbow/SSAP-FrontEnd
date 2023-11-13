@@ -44,14 +44,5 @@ export const LoginHandler = () => {
     }
   };
 
-  return (
-    <div>
-      <p>로그인 중입니다.</p>
-      <p>잠시만 기다려주세요.</p>
-      {/* 사용자 정보 화면에 표시 */}
-      {userName && <p>이름: {userName}</p>}
-      {userEmail && <p>이메일: {userEmail}</p>}
-      console.log("상태 업데이트", userName, userEmail)
-    </div>
-  );
+  return <></>;
 };
