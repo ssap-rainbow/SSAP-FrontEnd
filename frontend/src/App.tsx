@@ -12,7 +12,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route
-            path="/login/oauth2/code/kakao"
+            // path="/login/oauth2/code/kakao"
+            path="/api/oauth/kakao/callback"
             element={<LoginHandler />} //redirect_url에 맞춰 꾸밀 컴포넌트
           />
         </Routes>
