@@ -7,9 +7,11 @@ export const LoginHandeler = () => {
   //인가코드 백으로 전달하는 곳
   const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code");
-  console.log("code", code);
+  console.log("code1", code);
   useEffect(() => {
     const kakaoLogin = async () => {
+      console.log("code2", code);
+
       await axios({
         method: "GET",
         url: `https://ke08fd11a16dba.user-app.krampoline.com/api/oauth/kakao/callback/?code=${code}`,
@@ -25,15 +27,19 @@ export const LoginHandeler = () => {
           console.log(res);
           //계속 쓸 정보들( ex: 이름) 등은 localStorage에 저장해두자
           localStorage.setItem("name", res.data.account.kakaoName);
+          console.log("code3", code);
+
           //로그인이 성공하면 이동할 페이지
           navigate("/");
+          console.log("code4", code);
         })
         .catch((error) => {
           console.error("로그인 요청 실패:", error);
         });
     };
     kakaoLogin();
-  }, []);
+    console.log("code5", code);
+  }, [code]);
   return (
     <div>
       <p>로그인 중입니다.</p>
