@@ -7,7 +7,7 @@ import Test from "./pages/Test";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter basename="https://ke08fd11a16dba.user-app.krampoline.com/">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login/oauth2/code/kakao" element={<LoginHandler />} />
@@ -20,7 +20,7 @@ function App() {
             element={<LoginHandler />} //redirect_url에 맞춰 꾸밀 컴포넌트
           /> */}
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
