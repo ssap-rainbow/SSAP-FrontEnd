@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
-import { LoginHandler } from "./pages/Login/LoginHandler";
+// import { LoginHandler } from "./pages/Login/LoginHandler";
 import Test from "./pages/Test";
 
 // BrowserRouter 생성
@@ -10,18 +10,18 @@ const router = createBrowserRouter([
     path: "/",
     element: <HomePage />,
   },
-  {
-    path: "/login/oauth2/code/kakao",
-    element: <LoginHandler />,
-  },
+  // {
+  //   path: "/login/oauth2/code/kakao",
+  //   element: <LoginHandler />,
+  // },
   {
     path: "/test",
     element: <Test />,
   },
-  {
-    path: "*",
-    element: <Test />,
-  },
+  // {
+  //   path: "*",
+  //   element: <Test />,
+  // },
 ]);
 
 function App() {
