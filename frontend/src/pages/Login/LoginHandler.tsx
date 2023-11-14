@@ -1,3 +1,16 @@
+import React from "react";
+
+const LoginHandler = () => {
+  return (
+    <div>
+      여기는 로그인 핸들러 입니다. 인가코드가 전달되고 나서 redirect URI로
+      이동된다면 여기가 실행되어야 해요 원래!!
+    </div>
+  );
+};
+
+export default LoginHandler;
+
 // import axios from "axios";
 // import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
