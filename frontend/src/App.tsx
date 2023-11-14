@@ -9,13 +9,8 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/api/oauth/kakao/callback"
-              element={<LoginHandler />}
-            />
-          </Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login/oauth2/code/kakao" element={<LoginHandler />} />
           {/* <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route

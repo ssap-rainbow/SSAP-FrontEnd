@@ -44,5 +44,5 @@ export const LoginHandler = () => {
     }
   };
 
-  return <></>;
+  return <div>로그인 중입니다...</div>;
 };
