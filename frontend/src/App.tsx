@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/login/oauth2/code/kakao",
+    path: "/login/oauth2/code/kakao/*",
     element: <LoginHandler />,
   },
   {
