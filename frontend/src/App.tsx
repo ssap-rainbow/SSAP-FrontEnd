@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/api/oauth/kakao/callback",
+    path: "/login/oauth2/code/kakao", // TODO 클라이언트 라우터 주소로 수정하였습니다.
     element: <LoginHandler />,
   },
   {
