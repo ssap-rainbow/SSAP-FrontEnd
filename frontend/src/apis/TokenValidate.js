@@ -17,4 +17,5 @@ export default function TokenValidate() {
       console.log(error);
     }
   };
+  fetchToken();
 }
