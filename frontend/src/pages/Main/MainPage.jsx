@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TokenValidate from "../../apis/TokenValidate";
 
 export default function MainPage() {
-  TokenValidate();
+  useEffect(() => {
+    TokenValidate();
+  }, []);
   return <div>MainPage</div>;
 }
