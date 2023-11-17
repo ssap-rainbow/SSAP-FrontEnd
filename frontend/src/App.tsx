@@ -3,32 +3,37 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import Test from "./pages/Test";
 import { LoginHandler } from "./pages/Login/LoginHandler";
-
-// BrowserRouter 생성
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/api/oauth/kakao/callback",
-    element: <LoginHandler />,
-  },
-  {
-    path: "/test",
-    element: <Test />,
-  },
-  {
-    path: "*",
-    element: <Test />,
-  },
-]);
+import AppRouter from "./router/Router";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <AppRouter />;
 }
-
 export default App;
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <HomePage />,
+//   },
+//   {
+//     path: "/api/oauth/kakao/callback",
+//     element: <LoginHandler />,
+//   },
+//   {
+//     path: "/test",
+//     element: <Test />,
+//   },
+//   {
+//     path: "*",
+//     element: <Test />,
+//   },
+// ]);
+
+// function App() {
+//   return <RouterProvider router={router} />;
+// }
+
+// export default App;
 
 // import React from "react";
 // import { BrowserRouter, Route, Routes } from "react-router-dom";

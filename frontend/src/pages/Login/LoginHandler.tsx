@@ -33,7 +33,7 @@ export const LoginHandler = () => {
         const { userName, userEmail } = res.data.account;
         setUserName(userName); // 상태 업데이트
         setUserEmail(userEmail); // 상태 업데이트
-        localStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰 저장
+        sessionStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰 저장
         console.log("엑세스 토큰 저장", localStorage.getItem("accessToken"));
         console.log("네비게이팅");
         navigate("/"); // 메인 페이지로 이동
