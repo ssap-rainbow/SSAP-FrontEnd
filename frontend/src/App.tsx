@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/api/oauth/kakao/callback",
+    path: "login/oauth2/code/kakao",
     element: <LoginHandler />,
   },
   {
