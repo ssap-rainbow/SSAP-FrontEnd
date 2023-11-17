@@ -20,7 +20,7 @@ export const LoginHandler = () => {
       const res = await axios({
         method: "GET",
         url: `/api/oauth/kakao/callback?code=${code}`,
-        // url: `https://ke08fd11a16dba.user-app.krampoline.com/api/oauth/kakao/callback?code=${code}`,
+        // url: `https://k1e5f1ddb1135a.user-app.krampoline.com/api/oauth/kakao/callback?code=${code}`,
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
