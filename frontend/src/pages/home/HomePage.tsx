@@ -20,6 +20,7 @@ import TokenValidate from "../../apis/TokenValidate";
 
 const HomePage = () => {
   const logout = LogoutHandler();
+  TokenValidate();
   return (
     <div>
       <button onClick={logout}>로그아웃</button>

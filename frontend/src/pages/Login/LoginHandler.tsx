@@ -36,7 +36,7 @@ export const LoginHandler = () => {
         sessionStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰 저장
         console.log("엑세스 토큰 저장", localStorage.getItem("accessToken"));
         console.log("네비게이팅");
-        navigate("/"); // 메인 페이지로 이동
+        navigate("/main"); // 메인 페이지로 이동
       } else {
         console.error("로그인 실패", res.data);
       }

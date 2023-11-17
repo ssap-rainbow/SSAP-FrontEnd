@@ -4,6 +4,7 @@ import HomePage from "./pages/home/HomePage";
 import Test from "./pages/Test";
 import { LoginHandler } from "./pages/Login/LoginHandler";
 import AppRouter from "./router/Router";
+import MainPage from "./pages/Main/MainPage";
 
 // function App() {
 //   return <AppRouter />;
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <Test />,
+  },
+  {
+    path: "/main",
+    element: <MainPage />,
   },
 ]);
 
