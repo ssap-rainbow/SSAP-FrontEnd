@@ -14,6 +14,7 @@ export default function TokenValidate() {
       });
       console.log("res", res);
     } catch (error) {
+      //401 일경우에 쿠키에 있는 refresh 토큰을 사용해서 accessToken 재발급 api 호출
       console.log(error);
     }
   };
