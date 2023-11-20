@@ -42,13 +42,13 @@ function TokenValidate() {
             console.log("엑세스 토큰 갱신 실패", refreshError);
           }
         } else {
-          console.log(error);
+          console.log("에러발생", error);
         }
       }
     };
 
     validateToken();
-  }, [cookies]); //cookies를 배열에 추가하면 리프레시 토큰이 변경되었을 때에 토큰 유효성 검사와 엑세스 토큰 갱신이 이루어짐.
+  }, []); //cookies를 배열에 추가하면 리프레시 토큰이 변경되었을 때에 토큰 유효성 검사와 엑세스 토큰 갱신이 이루어짐.
 
   return null;
 }
