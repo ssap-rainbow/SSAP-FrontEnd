@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 function TokenValidate() {
   const [cookies, setCookie] = useCookies(["refreshToken"]);
   useEffect(() => {
+    console.log("TokenValidate 컴포넌트 실행됨");
     const validateToken = async () => {
       const accessToken = sessionStorage.getItem("accessToken");
       const refreshToken = cookies.refreshToken; // 쿠키에서 리프레시 토큰 가져오기
