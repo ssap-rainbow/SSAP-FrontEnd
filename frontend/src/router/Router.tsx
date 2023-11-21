@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/Login/LoginPage";
-import HomePage from "../pages/Home/HomePage";
+import HomePage from "../pages/home/HomePage";
 import ErrandListPage from "../pages/ErrandList/ErrandListPage";
 import ErrandRequestPage from "../pages/ErrandRequest/ErrandRequestPage";
 import ErrandDetailsPage from "../pages/ErrandDetails/ErrandDetailsPage";
@@ -10,6 +10,7 @@ import ChatPage from "../pages/Chat/ChatPage";
 import HistoryPage from "../pages/History/HistoryPage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import { LoginHandler } from "../pages/Login/LoginHandler";
+
 export default function AppRouter() {
   return (
     <Router>
