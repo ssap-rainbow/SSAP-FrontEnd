@@ -16,11 +16,9 @@ import React from "react";
 import { LogoutHandler } from "../../apis/Logout";
 import LoginPage from "../Login/LoginPage";
 import { Link } from "react-router-dom";
-import TokenValidate from "../../apis/TokenValidate";
 
 const HomePage = () => {
   const logout = LogoutHandler();
-  TokenValidate();
   return (
     <div>
       <button onClick={logout}>로그아웃</button>

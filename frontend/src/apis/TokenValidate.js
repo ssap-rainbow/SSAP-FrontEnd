@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 function TokenValidate() {
   const [cookies, setCookie] = useCookies(["refreshToken"]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("TokenValidate 컴포넌트 실행됨");
@@ -26,9 +28,10 @@ function TokenValidate() {
           const res = await axios({
             method: "GET",
             url: `/api/oauth/validate-token?accessToken=${accessToken}`,
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
+            // headers: {
+            //   Authorization: `Bearer ${accessToken}`,
+            // },
+            // TODO api.js 내에 인터셉터 테스트를 위한 주석
           });
           console.log("res", res);
         } catch (error) {
@@ -47,6 +50,7 @@ function TokenValidate() {
             }
           } else {
             console.log("에러발생", error);
+            navigate("/login");
           }
         }
       }
