@@ -13,7 +13,7 @@ export const ErrandRequestPost = async (errandFormData: ErrandFormData) => {
   };
   console.log("ErrandRequestPost", formData);
   try {
-    const response = await axios.post(`${APP_URL}/api/request`, formData, {
+    const response = await axios.post("/api/request", formData, {
       headers: {
         // Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
