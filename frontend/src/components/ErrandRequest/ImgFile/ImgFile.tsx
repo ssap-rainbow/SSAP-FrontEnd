@@ -59,7 +59,7 @@ function ImgFile() {
 
       <Controller
         control={control}
-        name="fileData"
+        name="files"
         render={({ field: { onChange, onBlur, name, ref } }) => (
           <input
             type="file"
