@@ -35,7 +35,7 @@ export const LoginHandler = () => {
         setUserEmail(userEmail); // 상태 업데이트
         sessionStorage.setItem("accessToken", res.data.accessToken); // 액세스 토큰 저장
         console.log("네비게이팅");
-        navigate("/main"); // 메인 페이지로 이동
+        navigate("/home"); // HomePage로 이동
       } else {
         console.error("로그인 실패", res.data);
       }
