@@ -4,6 +4,7 @@ import useCurrentLocation from "../../hooks/useCurrentLocation";
 import { useFormContext } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { jibunAddrState, roadAddrState } from "../../recoil/atoms/errand";
+import { CLIENT_ID } from "../../apis/OAuth";
 
 declare global {
   interface Window {
@@ -19,12 +20,13 @@ function KakaoMap() {
   const { setValue } = useFormContext();
 
   const KAKAO_API = process.env.REACT_APP_JAVASCRIPT_API_KEY;
+  console.log(KAKAO_API);
 
   useEffect(() => {
     // 스크립트 로딩
     const script = document.createElement("script");
     script.async = true;
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API}&autoload=false&libraries=services`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${CLIENT_ID}&autoload=false&libraries=services`;
     document.head.appendChild(script);
 
     // 카카오맵 불러오기
