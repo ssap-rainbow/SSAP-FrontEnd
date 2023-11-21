@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "./api";
 
 export const LogoutHandler = () => {
   const navigate = useNavigate();
@@ -7,13 +8,14 @@ export const LogoutHandler = () => {
   const logout = async () => {
     const accessToken = sessionStorage.getItem("accessToken"); // 로컬 스토리지에서 액세스 토큰 가져오기
     const provider = sessionStorage.getItem("provider");
+
     if (!accessToken) {
       console.error("액세스 토큰이 없습니다.");
       return;
     }
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         `/api/oauth/kakao/logout`,
         // `/api/oauth/${provider}/logout`,
         {},
