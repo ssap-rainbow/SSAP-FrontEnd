@@ -16,12 +16,12 @@ export const LogoutHandler = () => {
       const response = await axios.post(
         `/api/oauth/kakao/logout`,
         // `/api/oauth/${provider}/logout`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
+        {}
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${accessToken}`,
+        //   },
+        // }
       );
 
       if (response.status === 200) {
