@@ -8,6 +8,7 @@ export const LogoutHandler = () => {
   const logout = async () => {
     const accessToken = sessionStorage.getItem("accessToken"); // 로컬 스토리지에서 액세스 토큰 가져오기
     const provider = sessionStorage.getItem("provider");
+
     if (!accessToken) {
       console.error("액세스 토큰이 없습니다.");
       return;
