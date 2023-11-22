@@ -19,8 +19,6 @@ function KakaoMap() {
   const jibunAddr = useRecoilValue(jibunAddrState);
   const { setValue } = useFormContext();
 
-  console.log("API KEY", CLIENT_ID);
-
   useEffect(() => {
     // 스크립트 로딩
     const script = document.createElement("script");
