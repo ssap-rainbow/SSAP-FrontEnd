@@ -54,7 +54,7 @@ export const ErrandItem = (errandItemProps: ErrandItemProps) => {
       <ItemRight>
         <span>{district}</span>
         <h4>{title}</h4>
-        <p>{`${fee || 0}원`}</p>
+        <p>{`${fee}원`}</p>
         <Time>
           <span>
             {startTime instanceof Date ? startTime.toLocaleString() : startTime}
