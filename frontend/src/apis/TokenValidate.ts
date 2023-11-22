@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import api from "./api";
 
 function TokenValidate() {
   const [cookies, setCookie] = useCookies(["refreshToken"]);
@@ -25,7 +26,7 @@ function TokenValidate() {
         );
 
         try {
-          const res = await axios({
+          const res = await api({
             method: "GET",
             url: `/api/oauth/validate-token?accessToken=${accessToken}`,
             // headers: {
@@ -35,22 +36,25 @@ function TokenValidate() {
           });
           console.log("res", res);
         } catch (error) {
-          if (error.response && error.response.status === 401) {
-            try {
-              const refreshTokenResponse = await axios({
-                method: "GET",
-                url: `/api/oauth/refresh-token?refreshToken=${refreshToken}`,
-              });
-              const newAccessToken = refreshTokenResponse.data;
-              console.log("갱신된 accessToken:", newAccessToken);
+          if (error instanceof AxiosError) {
+            // axios 에러 객체로 처리
+            if (error.response && error.response.status === 401) {
+              try {
+                const refreshTokenResponse = await axios({
+                  method: "GET",
+                  url: `/api/oauth/refresh-token?refreshToken=${refreshToken}`,
+                });
+                const newAccessToken = refreshTokenResponse.data;
+                console.log("갱신된 accessToken:", newAccessToken);
 
-              sessionStorage.setItem("accessToken", newAccessToken);
-            } catch (refreshError) {
-              console.log("엑세스 토큰 갱신 실패", refreshError);
+                sessionStorage.setItem("accessToken", newAccessToken);
+              } catch (refreshError) {
+                console.log("엑세스 토큰 갱신 실패", refreshError);
+              }
+            } else {
+              console.log("에러발생", error);
+              navigate("/login");
             }
-          } else {
-            console.log("에러발생", error);
-            navigate("/login");
           }
         }
       }
