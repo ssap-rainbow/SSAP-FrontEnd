@@ -38,6 +38,7 @@ function Errands() {
               fileData={item.fileData}
               district={item.district}
               title={item.title}
+              fee={item.fee}
               startTime={item.startTime}
               endTime={item.endTime}
               isLiked={item.isLiked}

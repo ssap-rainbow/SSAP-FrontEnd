@@ -6,11 +6,11 @@ import { LikedButton } from "./LikedButton";
 export interface ErrandItemProps {
   taskId?: number;
   fileData?: string; // 썸네일 이미지 URL
-  district?: string; // 동 이름
+  district: string; // 동 이름
   title: string; // 제목
-  fee?: string; // 심부름비
-  startTime: Date | string; // 심부름 시작 시간
-  endTime: Date | string; // 경매 마감 시간
+  fee: string; // 심부름비
+  startTime?: Date | string; // 심부름 시작 시간
+  endTime?: Date | string; // 경매 마감 시간
   isLiked?: boolean; // 찜하기
 }
 
@@ -54,7 +54,7 @@ export const ErrandItem = (errandItemProps: ErrandItemProps) => {
       <ItemRight>
         <span>{district}</span>
         <h4>{title}</h4>
-        <p>{`${fee}원`}</p>
+        <p>{fee}원</p>
         <Time>
           <span>
             {startTime instanceof Date ? startTime.toLocaleString() : startTime}
