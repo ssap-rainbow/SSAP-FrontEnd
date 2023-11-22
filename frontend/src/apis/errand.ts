@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ErrandFormData } from "../types/errand";
+import api from "./api";
 
 // TODO 사용자 데이터로 대체 예정
 const userEmail = "ssap.rainbow@gmail.com";
@@ -12,7 +13,7 @@ export const ErrandRequestPost = async (errandFormData: ErrandFormData) => {
   };
   console.log("ErrandRequestPost", formData);
   try {
-    const response = await axios.post("/api/request", formData, {
+    const response = await api.post("/api/request", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
