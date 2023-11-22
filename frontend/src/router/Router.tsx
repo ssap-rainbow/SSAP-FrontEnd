@@ -9,7 +9,7 @@ import ChatPage from "../pages/Chat/ChatPage";
 import HistoryPage from "../pages/History/HistoryPage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import { LoginHandler } from "../pages/Login/LoginHandler";
-import HomePage from "../pages/Home/HomePage";
+import HomePage from "../pages/home/HomePage";
 
 export default function AppRouter() {
   return (
