@@ -35,11 +35,11 @@ function Errands() {
           return (
             <ErrandItem
               key={item.taskId}
-              thumbnailUrl={item.thumbnailUrl}
-              jibunAddress={item.jibunAddress}
+              fileData={item.fileData}
+              district={item.district}
               title={item.title}
-              auctionStartTime={item.auctionStartTime}
-              auctionEndTime={item.auctionEndTime}
+              startTime={item.startTime}
+              endTime={item.endTime}
               isLiked={item.isLiked}
             />
           );
