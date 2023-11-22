@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
 import ErrandListPage from "../pages/ErrandList/ErrandListPage";
 import ErrandRequestPage from "../pages/ErrandRequest/ErrandRequestPage";
@@ -10,6 +9,7 @@ import ChatPage from "../pages/Chat/ChatPage";
 import HistoryPage from "../pages/History/HistoryPage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import { LoginHandler } from "../pages/Login/LoginHandler";
+import HomePage from "../pages/Home/HomePage";
 
 export default function AppRouter() {
   return (
