@@ -7,7 +7,8 @@ import { LogoutHandler } from "../../../../apis/Logout";
 function UserProfile() {
   // 로그아웃 처리
   const handleLogout = () => {
-    LogoutHandler();
+    const logoutFunction = LogoutHandler();
+    logoutFunction();
   };
 
   return (
