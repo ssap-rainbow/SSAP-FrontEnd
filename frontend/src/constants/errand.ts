@@ -3,9 +3,9 @@ import { Category } from "../types/errand";
 export const categories: Category[] = [
   {
     value: "category1",
-    text: "카테고리 1",
+    text: "배달·퀵",
     detailedItems: [
-      { value: "subcategory1-1", text: "서브 카테고리 1-1" },
+      { value: "subcategory1-1", text: "편의점 배달" },
       { value: "subcategory1-2", text: "서브 카테고리 1-2" },
     ],
   },
