@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "../../components/@common/Button/Button";
 import BottomSheet from "../../components/bottomSheet/BottomSheet";
+import Content from "../../components/bottomSheet/Content";
 import { ToastContainer } from "react-toastify";
-import { authInfoState } from "../../recoil/atoms/userInfo";
-import { useRecoilValue } from "recoil";
 import ErrandDetail from "../../components/ErrandDetail/ErrandDetail";
 import { Header } from "../../components/@common/Header/Header";
 import ErrandDate from "../../components/ErrandDetail/ErrandDate";
@@ -15,15 +14,10 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getErrandDetails } from "../../apis/errandDetail";
 import { accessToken } from "../../apis/OAuth";
+import ErrandCategory from "../../components/ErrandDetail/ErrandCategory";
 
 const ErrandDetailsPage = () => {
   const [open, setOpen] = useState(false);
-  const authInfo = useRecoilValue(authInfoState);
-
-  const { userName, userEmail } = authInfo;
-
-  console.log("userName :", userName);
-  console.log("userEmail :", userEmail);
 
   const { taskId } = useParams<{ taskId: string }>();
   const { data, isLoading, error } = useQuery(`errand-details-${taskId}`, () =>
@@ -61,14 +55,14 @@ const ErrandDetailsPage = () => {
   return (
     <div>
       {/* 심부름 상세 페이지 보이는 컴포넌트 추가 TODO */}
-      {/* <Header
+      <Header
         title="상세 페이지"
         onBack={handleBack}
         onMenu={handleMenu}
         alignItems="center"
         justifycontent="space-between"
         titleAlign="center"
-      /> */}
+      />
       <KakaoMap data={data} />
       {/* <ErrandCategory data={data} /> */}
       <Title data={data} />

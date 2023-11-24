@@ -3,7 +3,6 @@ import { ErrandItem, ErrandItemProps } from "./ErrandItem";
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { getErrands } from "../../apis/errand";
-import { Link } from "react-router-dom";
 
 type ErrandsData = {
   content: ErrandItemProps[];
