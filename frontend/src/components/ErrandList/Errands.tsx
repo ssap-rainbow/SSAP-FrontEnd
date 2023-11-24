@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { errandsData } from "../../mocks/errandsData";
 import { useQuery } from "react-query";
 import { getErrands } from "../../apis/errand";
+import { Link } from "react-router-dom";
 
 type ErrandsData = {
   content: ErrandItemProps[];
@@ -32,6 +33,8 @@ function Errands() {
       <ErrandItemsWrapper>
         {data.content.map((item) => {
           console.log("Errand item:", item);
+          <Link key={item.taskId} to={`/errand/:${item.taskId}`}></Link>; //TODO 여쭤보기
+
           return (
             <ErrandItem
               key={item.taskId}
