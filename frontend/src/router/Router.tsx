@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
 import ErrandListPage from "../pages/ErrandList/ErrandListPage";
 import ErrandRequestPage from "../pages/ErrandRequest/ErrandRequestPage";
@@ -9,7 +10,6 @@ import ChatPage from "../pages/Chat/ChatPage";
 import HistoryPage from "../pages/History/HistoryPage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import { LoginHandler } from "../pages/Login/LoginHandler";
-import HomePage from "../pages/home/HomePage";
 
 export default function AppRouter() {
   return (
@@ -20,7 +20,7 @@ export default function AppRouter() {
         <Route path="/login/oauth2/code/kakao" element={<LoginHandler />} />
         <Route path="/errandList" element={<ErrandListPage />} />
         <Route path="/errand/request" element={<ErrandRequestPage />} />
-        <Route path="/errand/:errandId" element={<ErrandDetailsPage />} />
+        <Route path="/errand/:taskId" element={<ErrandDetailsPage />} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/history" element={<HistoryPage />} />

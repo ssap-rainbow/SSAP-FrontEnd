@@ -1,11 +1,11 @@
 import React from "react";
 import Main from "../../components/Main/Main";
-import { MainHeader } from "../../components/@common/Header/MainHeader";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/@common/Button/Button";
 import { useRecoilValue } from "recoil";
 import { authInfoState } from "../../recoil/atoms/userInfo";
+import Template from "../../components/Template";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -22,20 +22,20 @@ function HomePage() {
   };
 
   return (
-    <HomeWrapper>
-      <MainHeader />
-      <Main />
-      <Button
-        fixed
-        text="✋ 요청하기"
-        size="medium"
-        onClick={handleRequestClick}
-      />
-    </HomeWrapper>
+    <Template headerProps={{ type: "logo" }}>
+      <HomeWrapper>
+        <Main />
+        <Button
+          fixed
+          text="✋ 요청하기"
+          size="medium"
+          onClick={handleRequestClick}
+        />
+      </HomeWrapper>
+    </Template>
   );
 }
 const HomeWrapper = styled.div`
-  position: relative;
   width: 100%;
 `;
 
