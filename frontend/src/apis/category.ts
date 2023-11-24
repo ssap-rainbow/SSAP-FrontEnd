@@ -6,7 +6,7 @@ export const getCategories = async () => {
   try {
     const response = await api.get(`/api/categories`, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        // Authorization: `Bearer ${accessToken}`,
         // "Content-Type": "application/json",
       },
     });
@@ -23,7 +23,7 @@ export const getSubCategories = async (categoryId) => {
   try {
     const response = await api.get(`/api/categories/${categoryId}/items`, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        // Authorization: `Bearer ${accessToken}`,
         // "Content-Type": "application/json",
       },
     });

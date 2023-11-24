@@ -15,7 +15,7 @@ export const ErrandRequestPost = async (errandFormData: ErrandFormData) => {
   try {
     const response = await api.post(`/api/request`, formData, {
       headers: {
-        Authorization: `Bearer ${accessToken}`, // TODO 로컬 테스트용
+        // Authorization: `Bearer ${accessToken}`, // TODO 로컬 테스트용
         "Content-Type": "multipart/form-data",
       },
     });
@@ -30,9 +30,9 @@ export const ErrandRequestPost = async (errandFormData: ErrandFormData) => {
 // 심부름 내역 가져오기
 export const getErrands = async () => {
   try {
-    const response = await api.get(`${APP_URL}/api/errands`, {
+    const response = await api.get(`/api/errands`, {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        // Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
     });
