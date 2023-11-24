@@ -3,9 +3,17 @@ import { Button } from "../../components/@common/Button/Button";
 import BottomSheet from "../../components/bottomSheet/BottomSheet";
 import Content from "../../components/bottomSheet/Content";
 import { ToastContainer } from "react-toastify";
+import { authInfoState } from "../../recoil/atoms/userInfo";
+import { useRecoilValue } from "recoil";
 
 const ErrandDetailsPage = () => {
   const [open, setOpen] = useState(false);
+  const authInfo = useRecoilValue(authInfoState);
+
+  const { userName, userEmail } = authInfo;
+
+  console.log("userName :", userName);
+  console.log("userEmail :", userEmail);
 
   const handleBtnClick = () => {
     //바텀 시트 로직
