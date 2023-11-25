@@ -76,3 +76,4 @@ const Map = styled.div`
 `;
 
 export default KakaoMap;
+

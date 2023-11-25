@@ -6,22 +6,7 @@ import { BOTTOM_SHEET_HEIGHT } from "../../constants/common";
 import useBottomSheet from "../../hooks/bottomSheet/useBottomSheet";
 import Content from "./Content";
 
-const BottomSheet = ({
-  data,
-  children,
-  isOpen,
-  setIsOpen,
-  currentBid,
-  setCurrentBid,
-  accessToken,
-  taskId,
-  userEmail,
-  auctionId,
-  bidAmount,
-  termsAgreed,
-  setBidAmount,
-  auctionData,
-}) => {
+const BottomSheet = ({ children, isOpen, setIsOpen }) => {
   const { onDragEnd, controls } = useBottomSheet(isOpen, setIsOpen);
   return (
     <Wrapper
@@ -43,20 +28,7 @@ const BottomSheet = ({
     >
       <Header />
       <ContentWrapper>
-        <Content
-          data={data}
-          setIsOpen={setIsOpen}
-          currentBid={currentBid}
-          setCurrentBid={setCurrentBid}
-          accessToken={accessToken}
-          taskId={taskId}
-          userEmail={userEmail}
-          auctionId={auctionId}
-          bidAmount={bidAmount}
-          termsAgreed={termsAgreed}
-          setBidAmount={setBidAmount}
-          auctionData={auctionData}
-        />
+        <Content setIsOpen={setIsOpen} />
       </ContentWrapper>
     </Wrapper>
   );

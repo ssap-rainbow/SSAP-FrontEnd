@@ -6,34 +6,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Input } from "../@common/Input/Input";
 import { headerImage } from "../../assets/headerImages";
-import { errorToast, successToast } from "../../constants/toast";
-import Terms from "../ErrandRequest/Terms/Terms";
-import { FormItem } from "../@common/FormItem/FormItem";
-import { FormProvider, useForm } from "react-hook-form";
-import { GetCurrentBid } from "../../apis/currentBid";
+import { successToast } from "../../constants/toast";
 
-const Content = ({
-  data,
-  setIsOpen,
-  currentBid,
-  setCurrentBid,
-  accessToken,
-  taskId,
-  userEmail,
-  auctionId,
-  bidAmount,
-  termsAgreed,
-  setBidAmount,
-  auctionData,
-}) => {
-  // const [bidAmount, setBidAmount] = useState(""); //입찰가격 입력 상태
+const Content = ({ setIsOpen }) => {
+  const [bidAmount, setBidAmount] = useState(""); //입찰가격 입력 상태
   const [errandFee, setErrandFee] = useState(""); //심부름비 상태
-  const methods = useForm();
-
-  const errandFeeLocale = Number(data.fee).toLocaleString();
 
   const notify = () => toast("입찰에 성공하였습니다");
-  const warn = () => toast("입찰 금액이 현재 입찰가보다 커야 합니다. ");
   //TODO 입찰에 실패했을 경우 추후에 추가
 
   const validateInputChange = (event) => {
@@ -44,84 +23,56 @@ const Content = ({
     }
   };
 
-  const handleBidClick = async () => {
-    const userBid = parseInt(bidAmount, 10);
-
-    try {
-      setCurrentBid(parseInt(bidAmount, 10));
-
-      const result = await GetCurrentBid(
-        taskId,
-        userEmail,
-        auctionId,
-        userBid,
-        true,
-      );
-
-      console.log("입찰 결과:", result);
-    } catch (error) {
-      console.log("입찰 실패:", error);
-    }
-
-    if (userBid < currentBid) {
-      setCurrentBid(userBid);
-      successToast("입찰에 성공하였습니다.");
-      setIsOpen(false);
-    } else {
-      errorToast("유저의 입찰 금액이 현재 입찰가보다 작아야 합니다.");
-      setIsOpen(true);
-    }
-
-    console.log("userBid", userBid);
-    console.log("currentBid", currentBid);
-    // setIsOpen(false);
+  const bidBtnClick = () => {
+    notify();
+    setIsOpen(false);
   };
 
   const handleToast = () => {
     console.log("클릭!");
-    // Number(data.fee) >
     successToast("입찰에 성공하였습니다.");
   };
 
-  return (
-    <FormProvider {...methods}>
-      <ContentWrapper>
-        <Title>심부름 입찰하기</Title>
-        <CloseButton
-          src={headerImage.close}
-          alt="x버튼"
-          onClick={() => setIsOpen(false)}
-        ></CloseButton>
-        <AuctionContainer>
-          <AuctionStart>
-            <Bid>경매 시작가</Bid>
-            <AuctionFee>{errandFeeLocale}원</AuctionFee>
-          </AuctionStart>
-          <CurrentBidContainer>
-            <Bid>현재 입찰가</Bid>
-            <CurrentBid>{auctionData.amount}원</CurrentBid>
-          </CurrentBidContainer>
-        </AuctionContainer>
+  //TODO 현재입찰가보다 높은 가격으로 설정하고 버튼 클릭 시 오류 발생 추후 심부름 요청서와 상태공유로 추가
 
-        <BidPriceContainer>
-          <Bid>입찰가격</Bid>
-          {/* TODO placeholder 오른족으로 이동 */}
-          <BidInput
-            value={bidAmount}
-            onChange={validateInputChange}
-            placeholder="0원"
-          />
-        </BidPriceContainer>
-        <Terms />
-        <Button
-          size="large"
-          color="primary"
-          text="💓 입찰하기"
-          // onClick={bidBtnClick}
-          onClick={handleBidClick}
+  return (
+    <ContentWrapper>
+      <Title>심부름 입찰하기</Title>
+      <CloseButton
+        src={headerImage.close}
+        alt="x버튼"
+        onClick={() => setIsOpen(false)}
+      ></CloseButton>
+      <AuctionContainer>
+        <AuctionStart>
+          <Bid>경매 시작가</Bid>
+          <AuctionFee>5,000원</AuctionFee>
+        </AuctionStart>
+        <CurrentBidContainer>
+          <Bid>현재 입찰가</Bid>
+          <CurrentBid>4,000원</CurrentBid>
+        </CurrentBidContainer>
+      </AuctionContainer>
+
+      <BidPriceContainer>
+        <Bid>입찰가격</Bid>
+        {/* TODO placeholder 오른족으로 이동 */}
+        <BidInput
+          value={bidAmount}
+          onChange={validateInputChange}
+          placeholder="0원"
         />
-      </ContentWrapper>
-    </FormProvider>
+        {/* TODO 약관동의 문구 및 체크박스 컴포넌트 가져다 쓰기 */}
+      </BidPriceContainer>
+
+      <Button
+        size="large"
+        color="primary"
+        text="💓 입찰하기"
+        // onClick={bidBtnClick}
+        onClick={handleToast}
+      />
+    </ContentWrapper>
   );
 };
 
