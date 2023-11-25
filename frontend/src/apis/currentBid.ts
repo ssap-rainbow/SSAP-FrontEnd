@@ -3,7 +3,7 @@ import api from "./api";
 export const GetCurrentBid = async (
   taskId: string,
   userEmail: string,
-  auctionId: string,
+  auctionId: number,
   bidAmount: number,
   termsAgreed: boolean,
 ) => {
