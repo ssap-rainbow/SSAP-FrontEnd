@@ -5,7 +5,6 @@ export const getCategories = async () => {
   try {
     const response = await api.get(`/api/categories`, {
       headers: {
-        // "Content-Type": "application/json",
       },
     });
     return response.data;
@@ -21,7 +20,6 @@ export const getSubCategories = async (categoryId) => {
   try {
     const response = await api.get(`/api/categories/${categoryId}/items`, {
       headers: {
-        // "Content-Type": "application/json",
       },
     });
     return response.data;

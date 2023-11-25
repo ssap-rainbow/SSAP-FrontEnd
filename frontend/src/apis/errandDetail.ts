@@ -1,4 +1,3 @@
-import axios from "axios";
 import api from "./api";
 
 const getErrandDetails = async (taskId, accessToken) => {

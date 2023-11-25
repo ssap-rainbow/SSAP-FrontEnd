@@ -1,5 +1,5 @@
-import React from "react";
-import { ErrandItem, ErrandItemProps } from "./ErrandItem";
+import React, { useEffect } from "react";
+import { ErrandItem, ErrandItemProps } from "../ErrandList/ErrandItem";
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { getErrands } from "../../apis/errand";
@@ -37,7 +37,6 @@ function Errands() {
       <h3>🌈 우리 동네 심부름</h3>
       <ErrandItemsWrapper>
         {data.content.map((item) => {
-          // console.log("Errands Porps:", item);
           return (
             <ErrandItem
               key={item.taskId}

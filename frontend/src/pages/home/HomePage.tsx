@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Main from "../../components/Main/Main";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/@common/Button/Button";
 import Template from "../../components/Template";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { userLocationState } from "../../recoil/atoms/LocationState";
+import { loadingState } from "../../recoil/atoms/settingsState";
+import Loading from "../../components/Loading/Loding";
 
 declare global {
   interface Window {
@@ -16,6 +18,7 @@ declare global {
 function HomePage() {
   // const [currentLocation, setCurrentLocation] = useState(null);
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
+  const [loading, setLoading] = useRecoilState(loadingState);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +44,7 @@ function HomePage() {
 
             // setUserLocation({ address: jibunAddress });
             setUserLocation(jibunAddress);
+            setLoading(false);
           }
         });
       }
@@ -54,6 +58,7 @@ function HomePage() {
 
   return (
     <Template headerProps={{ type: "logo" }}>
+      {loading && <Loading />}
       <Main />
       <Button
         fixed

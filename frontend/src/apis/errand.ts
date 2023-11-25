@@ -1,5 +1,4 @@
 import { ErrandFormData } from "../types/errand";
-import { APP_URL, accessToken } from "./OAuth";
 import api from "./api";
 
 // TODO 사용자 데이터로 변경 예정
