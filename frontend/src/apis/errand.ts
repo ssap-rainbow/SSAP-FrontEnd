@@ -16,7 +16,7 @@ export const ErrandRequestPost = async (
   try {
     const response = await api.post(`/api/request`, formData, {
       headers: {
-        Authorization: `Bearer ${accessToken}`, // TODO 로컬 테스트용
+        // Authorization: `Bearer ${accessToken}`, // TODO 로컬 테스트용
         "Content-Type": "multipart/form-data",
       },
     });
