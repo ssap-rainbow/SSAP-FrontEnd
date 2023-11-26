@@ -1,9 +1,10 @@
+import { accessToken } from "./OAuth";
 import api from "./api";
 
 export const GetCurrentBid = async (
   taskId: string,
   userEmail: string,
-  auctionId: number,
+  auctionId: string,
   bidAmount: number,
   termsAgreed: boolean,
 ) => {
@@ -19,6 +20,7 @@ export const GetCurrentBid = async (
       },
       {
         headers: {
+          Authorization: `Bearer ${accessToken}`,
         },
       },
     );
