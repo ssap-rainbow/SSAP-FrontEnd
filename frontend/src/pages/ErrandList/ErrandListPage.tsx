@@ -6,8 +6,11 @@ import { fetchErrandCategory } from "../../apis/errandCategory";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import { useRecoilValue } from "recoil";
+import { userLocationState } from "../../recoil/atoms/LocationState";
 
 function ErrandListPage() {
+  const location = useRecoilValue(userLocationState);
   const { categoryId } = useParams();
   const selectedCategoryId = parseInt(categoryId, 10);
   console.log("categoryId", categoryId);
@@ -20,7 +23,7 @@ function ErrandListPage() {
     error,
   } = useQuery(
     ["errandCategory", selectedCategoryId],
-    () => fetchErrandCategory(selectedCategoryId),
+    () => fetchErrandCategory(selectedCategoryId, location),
     {
       // 옵션: staleTime, cacheTime 등을 설정할 수 있습니다.
     },
@@ -53,6 +56,8 @@ function ErrandListPage() {
   );
 }
 
-const ErrandsList = styled.ul``;
+const ErrandsList = styled.ul`
+  padding: 0 3vw 2rem;
+`;
 
 export default ErrandListPage;

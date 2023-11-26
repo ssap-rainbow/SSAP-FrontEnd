@@ -19,11 +19,13 @@ import { GetCurrentBid } from "../../apis/currentBid";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { authInfoState } from "../../recoil/atoms/userInfo";
 import { getAuctionDetail } from "../../apis/auctionDetail";
+import Template from "../../components/Template";
+import styled from "styled-components";
 
 const ErrandDetailsPage = () => {
   const [open, setOpen] = useState(false);
-  const [currentBid, setCurrentBid] = useState(0);
-  const [bidAmount, setBidAmount] = useState("");
+  // const [currentBid, setCurrentBid] = useState(0);
+  // const [bidAmount, setBidAmount] = useState("");
   const authInfo = useRecoilValue(authInfoState);
   const [intervalId, setIntervalId] = useState(null);
 
@@ -50,21 +52,27 @@ const ErrandDetailsPage = () => {
   } = useQuery(
     `auction-details-${taskId}`,
     () => getAuctionDetail(errandData.auctionId, accessToken),
-    { enabled: !!errandData }, // errandData가 없으면 호출하지 않음
+    {
+      enabled: !!errandData,
+    },
   );
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // 여기에서 auctionData를 사용하여 추가 작업 수행
-        console.log("Auction Data:", auctionData);
+
+        // errandData가 존재할 때만 호출
+        const auctionDetails = await getAuctionDetail(
+          errandData.auctionId,
+          accessToken,
+        );
+        console.log("use Effect 내 Auction Data:", auctionDetails);
       } catch (error) {
         console.error("에러 발생:", error);
       }
     };
-
     fetchData();
-
     const id = setInterval(async () => {
       await refetchErrandData();
       await refetchAuctionData();
@@ -114,7 +122,7 @@ const ErrandDetailsPage = () => {
   };
 
   return (
-    <div>
+    <Template>
       {/* <Header
         title="상세 페이지"
         onBack={handleBack}
@@ -124,12 +132,16 @@ const ErrandDetailsPage = () => {
         titleAlign="center"
       /> */}
       <KakaoMap data={errandData} />
-      <Title data={errandData} />
-      <ErrandFeeContainer data={errandData} />
-      <ErrandDate data={errandData} />
-      <ErrandDetail data={errandData} />
-      <UserProfile data={errandData} />
+      <ErrandDetailInner>
+        <Title data={errandData} />
+        <ErrandFeeContainer data={errandData} />
+        <ErrandDate data={errandData} />
+        <ErrandDetail data={errandData} />
+        <UserProfile data={errandData} />
+      </ErrandDetailInner>
       <Button
+        className="button"
+        fixed
         text="✋ 심부름 지원하기"
         size="large"
         color="primary"
@@ -141,15 +153,15 @@ const ErrandDetailsPage = () => {
           data={errandData}
           isOpen={open}
           setIsOpen={setOpen}
-          currentBid={currentBid}
-          setCurrentBid={setCurrentBid}
+          // currentBid={currentBid}
+          // setCurrentBid={setCurrentBid}
           accessToken={accessToken}
           taskId={taskId}
           userEmail={userEmailTest}
           auctionId={auctionId}
-          bidAmount={bidAmount}
+          // bidAmount={bidAmount}
           termsAgreed={true}
-          setBidAmount={setBidAmount}
+          // setBidAmount={setBidAmount}
           auctionData={auctionData}
         >
           {/* <Content /> */}
@@ -166,8 +178,12 @@ const ErrandDetailsPage = () => {
         pauseOnHover // 마우스를 올리면 알람 정지
         theme="light"
       />
-    </div>
+    </Template>
   );
 };
+
+const ErrandDetailInner = styled.div`
+  padding: 2rem 3vw;
+`;
 
 export default ErrandDetailsPage;

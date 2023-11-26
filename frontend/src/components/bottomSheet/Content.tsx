@@ -15,26 +15,29 @@ import { GetCurrentBid } from "../../apis/currentBid";
 const Content = ({
   data,
   setIsOpen,
-  currentBid,
-  setCurrentBid,
+  // currentBid,
+  // setCurrentBid,
   accessToken,
   taskId,
   userEmail,
   auctionId,
-  bidAmount,
+  // bidAmount,
   termsAgreed,
-  setBidAmount,
+  // setBidAmount,
   auctionData,
 }) => {
-  // const [bidAmount, setBidAmount] = useState(""); //입찰가격 입력 상태
   const [errandFee, setErrandFee] = useState(""); //심부름비 상태
   const methods = useForm();
 
-  const errandFeeLocale = Number(data.fee).toLocaleString();
+  const [currentBid, setCurrentBid] = useState(auctionData.amount); //현재 입찰가
+  const [bidAmount, setBidAmount] = useState(""); //유저가 입력한 값
 
-  const notify = () => toast("입찰에 성공하였습니다");
-  const warn = () => toast("입찰 금액이 현재 입찰가보다 커야 합니다. ");
+  const errandFeeLocale = Number(data.fee).toLocaleString();
+  const currentBidAmount = Number(auctionData.amount).toLocaleString();
   //TODO 입찰에 실패했을 경우 추후에 추가
+
+  console.log("bidAmount", bidAmount);
+  console.log("currentBid", currentBid);
 
   const validateInputChange = (event) => {
     const value = event.target.value;
@@ -57,7 +60,6 @@ const Content = ({
         userBid,
         true,
       );
-
       console.log("입찰 결과:", result);
     } catch (error) {
       console.log("입찰 실패:", error);
@@ -99,7 +101,7 @@ const Content = ({
           </AuctionStart>
           <CurrentBidContainer>
             <Bid>현재 입찰가</Bid>
-            <CurrentBid>{auctionData.amount}원</CurrentBid>
+            <CurrentBid>{currentBidAmount}원</CurrentBid>
           </CurrentBidContainer>
         </AuctionContainer>
 

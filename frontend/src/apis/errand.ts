@@ -36,7 +36,7 @@ export const getErrands = async (location: string) => {
       `/api/errands?address=${location}&page=0&size=100`,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          // Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
       },
