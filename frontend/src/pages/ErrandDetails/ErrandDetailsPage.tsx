@@ -62,9 +62,6 @@ const ErrandDetailsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 여기에서 auctionData를 사용하여 추가 작업 수행
-
-        // errandData가 존재할 때만 호출
         const auctionDetails = await getAuctionDetail(
           errandData.auctionId,
           accessToken,
@@ -79,8 +76,7 @@ const ErrandDetailsPage = () => {
       await refetchErrandData();
       await refetchAuctionData();
       fetchData();
-    }, 30000);
-    //TODO 추후에 1초로 다시 변경
+    }, 1000);
 
     setIntervalId(id);
 
