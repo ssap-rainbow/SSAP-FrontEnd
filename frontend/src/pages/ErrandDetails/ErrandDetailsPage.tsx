@@ -79,7 +79,8 @@ const ErrandDetailsPage = () => {
       await refetchErrandData();
       await refetchAuctionData();
       fetchData();
-    }, 1000);
+    }, 30000);
+    //TODO 추후에 1초로 다시 변경
 
     setIntervalId(id);
 
